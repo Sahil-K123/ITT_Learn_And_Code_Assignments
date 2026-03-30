@@ -1,9 +1,9 @@
 export class Logger {
-  static log(message: string) {
+  log(message: string) {
     console.log(`[LOG]: ${message}`);
   }
 
-  static error(message: string) {
+  error(message: string) {
     console.error(`[ERROR]: ${message}`);
   }
 }
