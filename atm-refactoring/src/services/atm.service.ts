@@ -5,6 +5,8 @@ import { NetworkConnectionError } from "../exceptions/network-connection.error";
 
 export class ATMService {
 
+  private static readonly DEFAULT_ACCOUNT_BALANCE = 5000;
+
   public withdrawAmount(accountId: string, amount: number): void {
     const deviceRecord = this.fetchDeviceRecord();
 
@@ -40,7 +42,7 @@ export class ATMService {
   }
 
   private fetchAccountBalance(accountId: string): number {
-    return 5000; 
+    return ATMService.DEFAULT_ACCOUNT_BALANCE; 
   }
 
   private performCashDispense(amount: number): void {
