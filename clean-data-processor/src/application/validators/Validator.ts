@@ -1,15 +1,29 @@
-import { RecordData } from "../../core/models/Record";
+import { ProcessedRecord } from "../../core/models/Record";
 
 export class Validator {
-    validate(records: RecordData[]): { valid: RecordData[], errors: string[] } {
-        const valid: RecordData[] = [];
+    validate(records: ProcessedRecord[]): { valid: ProcessedRecord[]; errors: string[] } {
+        const valid: ProcessedRecord[] = [];
         const errors: string[] = [];
 
-        records.forEach(r => {
-            if (!r.id || !r.name || isNaN(r.value)) {
-                errors.push(`Invalid record: ${JSON.stringify(r)}`);
+        records.forEach((record, index) => {
+            const recordErrors: string[] = [];
+
+            if (!record.id || record.id.trim() === "") {
+                recordErrors.push("Missing id");
+            }
+
+            if (!record.name || record.name.trim() === "") {
+                recordErrors.push("Missing name");
+            }
+
+            if (record.value === undefined || isNaN(record.value)) {
+                recordErrors.push("Invalid value");
+            }
+
+            if (recordErrors.length > 0) {
+                errors.push(`Record ${index + 1}: ${recordErrors.join(", ")}`);
             } else {
-                valid.push(r);
+                valid.push(record);
             }
         });
 

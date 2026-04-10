@@ -1,43 +1,25 @@
-import { RecordData } from "../../core/models/Record";
+import { ProcessedRecord } from "../../core/models/Record";
 
 export class Parser {
 
-    parse(lines: string[]): RecordData[] {
-        const records: RecordData[] = [];
+    parse(lines: string[]): ProcessedRecord[] {
+    const records: ProcessedRecord[] = [];
 
-        for (const line of lines) {
-            if (!line || line.trim() === "") continue;
+    for (const line of lines) {
+        if (!line || line.trim() === "") continue;
 
-            const parts = line.split(",");
+        const parts = line.split(",");
 
-            const id = parts[0];
-            const name = parts[1];
-            const valueStr = parts[2];
+        const record: ProcessedRecord = {
+            id: parts[0]?.trim(),
+            name: parts[1]?.trim(),
+            value: Number(parts[2]),
+            date: parts[3]?.trim()
+        };
 
-            if (id === undefined || name === undefined || valueStr === undefined) {
-                throw new Error(`Invalid line: ${line}`);
-            }
-
-            const value = Number(valueStr);
-
-            if (isNaN(value)) {
-                throw new Error(`Invalid number in line: ${line}`);
-            }
-
-            const record: RecordData = {
-                id: id.trim(),
-                name: name.trim(),
-                value: value
-            };
-
-            const date = parts[3];
-            if (date !== undefined && date.trim() !== "") {
-                record.date = date.trim();
-            }
-
-            records.push(record);
-        }
-
-        return records;
+        records.push(record);
     }
+
+    return records;
+}
 }
