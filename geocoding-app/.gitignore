@@ -1,0 +1,4 @@
+node_modules/
+package-lock.json
+typescript_code_review_guide.md
+.env
