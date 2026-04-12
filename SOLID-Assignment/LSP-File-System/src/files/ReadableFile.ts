@@ -1,3 +1,3 @@
-export abstract class ReadableFile {
-    abstract read(): void;
+export interface ReadableFile {
+    read(): void;
 }
