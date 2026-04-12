@@ -1,8 +1,8 @@
-import { GoogleGeocodingClient } from "../clients/google-geocoding.client";
+import { GeocodingClient } from "../interfaces/GeocodingClient";
 import { Location } from "../domain/location";
 
 export class GeocodingService {
-    private client = new GoogleGeocodingClient();
+    constructor(private client: GeocodingClient) {}
 
     async getLocation(place: string): Promise<Location[]> {
         const data = await this.client.fetchCoordinates(place);

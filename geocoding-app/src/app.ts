@@ -1,8 +1,10 @@
 import { GeocodingService } from "./services/geocoding.service";
+import { GoogleGeocodingClient } from "./clients/google-geocoding.client";
+import { AxiosHttpClient } from "./infrastructure/http/AxiosHttpClient";
 import { validateInput } from "./utils/validator";
 
 export class App {
-    private service = new GeocodingService();
+    private service = new GeocodingService(new GoogleGeocodingClient(new AxiosHttpClient()));
 
     async run(locationInput: string): Promise<void> {
         try {
