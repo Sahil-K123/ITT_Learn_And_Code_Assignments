@@ -1,0 +1,14 @@
+Git Snapshot vs Commit
+
+In Git, a snapshot is a record of the entire project at a specific point in time. 
+Whenever you save your work, Git captures the state of all files in your project as they exist at that moment.
+
+A commit is the action of saving that snapshot into Git’s history. 
+It includes additional information like the author, timestamp, and a commit message.
+
+Difference:
+- Snapshot: The actual state (data) of your project at a point in time.
+- Commit: The container that stores the snapshot along with metadata.
+
+In short:
+Every commit contains a snapshot, but a snapshot itself is just the project’s state, not the full record.
